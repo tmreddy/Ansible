@@ -1,0 +1,20 @@
+FROM ubuntu:latest AS build
+
+RUN apt-get update 
+RUN apt-get install -y nano
+RUN apt-get install -y openssh-server
+RUN apt-get install -y python3
+RUN apt-get install - ansible
+
+RUN ansible --version
+RUN ansible-config init --disable >ansible.cfg
+
+FROM scratch
+
+COPY --from=build app /app
+
+RUN ssh-keygen -t -rsa
+
+RUN service ssh status 
+
+RUN service ssh start

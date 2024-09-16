@@ -1,0 +1,12 @@
+---
+- name : Install on linux
+  hosts: Group1
+  become: true
+  roles:
+    - InstallDockerOnLinux
+- name: Install on ec2
+  hosts: Group2
+  become: true
+  roles:
+    - InstallDockerOnEc2
+    

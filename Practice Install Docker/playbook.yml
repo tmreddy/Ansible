@@ -1,0 +1,25 @@
+---
+# - name: install docker on ubuntu
+#   hosts: Group1
+#   become: true
+#   roles: 
+#     - DockeronUbuntu
+- name: install docker on debian
+  hosts: Group2
+  become: true
+  roles: 
+    - DockeronDebian
+
+
+# ---
+# - name : Install on linux
+#   hosts: Group1
+#   become: true
+#   roles:
+#     - InstallDockerOnLinux
+# - name: Install on ec2
+#   hosts: Group2
+#   become: true
+#   roles:
+#     - InstallDockerOnEc2
+    

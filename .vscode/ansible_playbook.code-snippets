@@ -1,0 +1,6 @@
+{
+	- name: "Ansible Play",
+	  hosts: all,
+	  tasks: 
+	  	- name: task1 
+}		  command: command1 	

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  roles:
+    - httpd
+  tasks:
+    - name: Install apache httpd
+      ansible.builtin.apt:
+        name: apache2
+        state: absent
+        update_cache: yes

@@ -1,0 +1,25 @@
+---
+- name: play1
+  hosts: all / groupname
+  become: true / username
+  roles:
+    - httpd
+  tasks:
+    - name : task1
+      module: name
+      attribute1: value1
+    - name : task1
+      module: name
+      attribute1: value1
+      attribute2: value2  
+- name: play2
+  hosts: all / groupname
+  become: true / username
+  tasks:
+    - name : task1
+      module: name
+      attribute1: value1
+    - name : task1
+      module: name
+      attribute1: value1
+      attribute2: value2

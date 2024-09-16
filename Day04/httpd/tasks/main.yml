@@ -1,0 +1,33 @@
+---
+# tasks file for httpd
+
+- name: Install apache httpd
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+    update_cache: yes
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: files/Ansible.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
+- name: Start apache2 service
+  ansible.builtin.service:
+    name: apache2
+    state: started
+    enabled: yes
+#write a small progrem to check the apache2 service is running or not
+- name: Check apache2 service is running or not
+  ansible.builtin.shell: ps -ef | grep apache2 | grep -v grep
+  register: apache2_status
+- name: Display the status of apache2 service
+  ansible.builtin.debug:
+    var: apache2_status.stdout
+#write a playbook to install python
+- name: Install python
+  ansible.builtin.apt:
+    name: python3
+    state: present
+    update_cache: yes

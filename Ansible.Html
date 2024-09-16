@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansible Commands</title>
+</head>
+<body>
+    <h1>Ansible Commands</h1>
+    <table border="1">
+        <caption>Ansible Commands</caption>
+        <thead>
+            <th>Command</th>
+            <th>Description</th>
+        </thead>
+        <tr>
+            <td>ansible --version</td>
+            <td>This command is used to get ansible version</td>
+        </tr>
+        <tr>
+            <td>ansible-config dump</td>
+            <td>This command is used to get ansible configuration</td>
+        </tr>
+        <tr>
+            <td>ansible-config dump | grep DEFAULT_HOST_LIST</td>
+            <td>This command is used to get ansible DEFAULT_HOST_LIST</td>
+        </tr>
+        
+        <tr>
+            <td>sudo nano /etc/ansible/ansible.cfg</td>
+            <td>This command is used to ansbible configuration</td>
+        </tr>
+        <tr>
+            <td>ansible-config init --disabled > ansible.cfg</td>
+            <td>This command is used to create default configuration, all the configurations are commented as we asked for --disabled</td>
+        </tr>
+        <tr>
+            <td>ansible all -m ping -v > ansible.cfg</td>
+            <td>This command is used to ping configured host in ini file, we can give all or section name or hostname, all will try to ping all the hosts.</td>
+        </tr>
+        <tr>
+            <td>eval "$(ssh-agent -s)"</td>
+            <td>This command is used to store in memory passcode of ssh file</td>
+        </tr>
+        <tr>
+            <td>ansible web -m shell -a 'cat /etc/os-release' -v</td>
+            <td>This command is used to connect to web section of hosts and use shell module to get os version -a is for attributes</td>
+        </tr>
+        <tr>
+            <td>ansible --help</td>
+            <td>This command is used to get help on ansible</td>
+        </tr>
+        <tr>
+            <td>ansible-doc -l </td>
+            <td>This command is used to all the modules available for ansible </td>
+        </tr>
+        <tr>
+            <td>ansible-doc ping </td>
+            <td>This command is used to get help on the ping module, with e.g.</td>
+        </tr>
+        <tr>
+            <td>ansible all -m copy -a "src=/etc/ansible/files/test.config dest=/etc/test.config </td>
+            <td>This command is used to copy test.comfig to all hosts </td>
+        </tr>
+        <tr>
+            <td>docker pull ubuntu</td>
+            <td>This command is used to get latest ubuntu image</td>
+        </tr>
+        <tr>
+            <td>docker run --rm -it ubuntu:latest</td>
+            <td>This command is used to create ubuntu container </td>
+        </tr>
+        <tr>
+            <td>sudo apt install python3</td>
+            <td>This command is used to install python3 on ubuntu container</td>
+        </tr>
+        <tr>
+            <td>ansible-galaxy role init test</td>
+            <td>This command is used to initialize a role with name test</td>
+        </tr>
+        <tr>
+            <td>ansible-galaxy -h</td>
+            <td>This command is used to get help on ansible galaxy</td>
+        </tr>
+        <tr>
+            <td>ansible-galaxy role -h</td>
+            <td>This command is used to get help on role</td>
+        </tr>
+        <tr>
+            <td>ansible-galaxy role install bsmeding.docker</td>
+            <td>This command is used to install bsmeding.docker role</td>
+        </tr>
+        <tr>
+            <td>ls ~/.ansible/roles</td>
+            <td>This command is list the installed roles.</td>
+        </tr>
+        <tr>
+        <td>ansible-galaxy role init test</td>
+            <td>This command is used to create and scaffold the new role</td>
+        </tr>   
+        <tr>
+            <td>asnible host.ini -m include_role -a name=my-role </td>
+            <td>This command is used to invoke the role from the Ansible CLI</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" style="font-size: large;"><strong>ansible-playbook commands</strong></td>
+        </tr>
+        <tr>
+            <td>ansible-playbook mp.yml</td>
+            <td>Command to run mp.yml playbook</td>
+        </tr>
+        <tr>
+            <td>ansible-playbook -i inv.ini mp.yml</td>
+            <td>Command to run mp.yml playbook with specific an inventory file</td>
+        </tr>
+        <tr>
+            <td>ansible-playbook --limit "web,db" mp.yml</td>
+            <td>Command to run mp.yml playbook limit to a subset of hosts</td>
+        </tr>
+        <tr>
+            <td>ansible-playbook --tags "dev" mp.yml</td>
+            <td>Command to run mp.yml playbook conditional application with tags</td>
+        </tr>
+        <tr>
+            <td>ansible-playbook --become --become-user mp.yml</td>
+            <td>Command to run mp.yml playbook, Elevate privileges to a non-root user</td>
+        </tr>
+        <tr>
+            <td>ansible-playbook --vault-password-file vault_pass.txt mp.yml</td>
+            <td>Command to run mp.yml playbook, specifu an Anisble Vault password file</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" style="font-size: large" </tr><strong>ansible demo</strong></td>
+        </tr>
+        <tr>
+            <td>ansible --version</td>
+            <td>Command to get ansible version</td>
+        </tr>
+        <tr>
+            <td>ssh-copy-id -f "-o IdentityFile ~/Developer/Mallikarjun/ec2.pem" ubuntu@65.2.70.183</td>
+            <td>Command to make manage host as password less authentication</td>
+        <tr>
+            <td>vi hosts.ini</td>
+            <td>Commnad to create host.ini file</td>
+        <tr>
+            <td>ansible all -i hosts.ini -m ping</td>
+            <td>Command to ping all the hosts</td>
+        </tr>  
+        <tr>    
+            <td>ansible-playbook --help</td>
+            <td>Command to get ansible-playbook help</td>
+        </tr>
+        <tr>    
+            <td>ansible-playbook -i hosts.ini powershell.yml</td>
+            <td>Command to run palybook with powershell.yml, -v is for verbose, we can give vvv, the more v's we add the more verboes</td>
+        </tr>
+        <tr>
+            <td>ansible-doc user</td>
+            <td>This command get the help for user module</td>
+        </tr>
+        <tr>
+            <td>cut -d: -f1 /etc/passwd</td>
+            <td>This command is to get the list of all users on ubuntu</td>   
+        </tr>
+        <tr>
+            <td>ansible-galaxy inti webserver</td>
+            <td>This command will initialize webserver role</td>
+        </tr>
+    </table>
+    <img src="Image/AnsibleProjectStructure.png" width="800px" alt="Ansible Project Structure">
+    <img src="Image/RoleDirectoryStructure.png" alt="Role directory structure" width="800px">
+    <img src="Image/Ansibletemplate.png" width="800px" alt="Ansible template">
+</body>
+</html>
