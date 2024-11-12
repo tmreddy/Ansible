@@ -1,0 +1,28 @@
+---
+# Here’s an example where we modify a configuration file, and if it’s changed, we restart a service.
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Update the configuration file
+      copy:
+        src: /path/to/local/config.conf
+        dest: /etc/myapp/config.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: Restart myapp service
+
+  handlers:
+    - name: Restart myapp service
+      service:
+        name: myapp
+        state: restarted
+
+# #### Explanation:
+# - Tasks:
+#   - The `copy` task copies a configuration file from the local machine to the target EC2 instance.
+#   - If the file is changed (i.e., it was different from the previous one), it will notify the handler.
+  
+# - Handlers:
+#   - The `Restart myapp service` handler is triggered if the `copy` task modifies the configuration file. It restarts the `myapp` service.

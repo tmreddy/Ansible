@@ -1,0 +1,7 @@
+---
+# roles/nginx/handlers/main.yml
+
+- name: Nginx installation completed
+  debug:
+    msg: "Nginx has been successfully installed."
+    

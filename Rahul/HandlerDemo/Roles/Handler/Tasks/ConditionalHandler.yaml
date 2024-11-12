@@ -1,0 +1,18 @@
+---
+# Handlers can also be used with conditions to ensure they are only triggered when specific criteria are met.
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Ensure Apache is installed
+      apt:
+        name: apache2
+        state: present
+      notify: Restart Apache if installed
+
+  handlers:
+    - name: Restart Apache if installed
+      service:
+        name: apache2
+        state: restarted
+      when: ansible_facts.packages['apache2'] is defined

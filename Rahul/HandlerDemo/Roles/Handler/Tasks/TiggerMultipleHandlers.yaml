@@ -1,0 +1,23 @@
+---
+# If multiple tasks notify the same handler, that handler will only be executed once, even if notified multiple times.
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Change first file
+      copy:
+        src: /path/to/file1.conf
+        dest: /etc/myapp/file1.conf
+      notify: Restart myapp service
+
+    - name: Change second file
+      copy:
+        src: /path/to/file2.conf
+        dest: /etc/myapp/file2.conf
+      notify: Restart myapp service
+
+  handlers:
+    - name: Restart myapp service
+      service:
+        name: myapp
+        state: restarted

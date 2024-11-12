@@ -1,0 +1,15 @@
+# nginx/tasks/main.yml
+---
+- name: Install Nginx package
+  apt:
+    name: "{{ nginx_package }}"
+    state: present
+    update_cache: yes
+  notify:
+    - Nginx installation complete
+
+- name: Start and enable Nginx service
+  service:
+    name: "{{ nginx_service }}"
+    state: started
+    enabled: yes

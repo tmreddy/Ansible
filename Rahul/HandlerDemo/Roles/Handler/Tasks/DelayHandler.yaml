@@ -1,0 +1,19 @@
+---
+# If you need to ensure that handlers run after a specific delay, you can use the `delay` option with the `wait_for` module to introduce a delay before a handler executes.
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Update the config file
+      copy:
+        src: /path/to/local/config.conf
+        dest: /etc/myapp/config.conf
+      notify: Restart myapp service after delay
+
+  handlers:
+    - name: Restart myapp service after delay
+      service:
+        name: myapp
+        state: restarted
+      delay: 10
+      when: ansible_facts.packages['myapp'] is defined

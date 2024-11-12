@@ -1,0 +1,7 @@
+---
+
+- name: Ansible playbook example
+  hosts: all
+  remote_user: ubuntu
+  roles:
+    - python

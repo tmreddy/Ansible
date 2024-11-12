@@ -1,0 +1,84 @@
+/* Reset some common styling for consistent behavior across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Style for ordered list (ol) */
+  ol {
+    list-style-type: decimal; /* Default numbering for ordered lists */
+    padding-left: 20px; /* Adds indentation to the list */
+    margin-bottom: 1.5em; /* Space below the ordered list */
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1em;
+  }
+  
+  ol li {
+    margin-bottom: 0.8em; /* Space between each list item */
+    line-height: 1.6;
+    color: #333; /* Darker color for better readability */
+  }
+  
+  /* Style for headings (h1 - h5) */
+  h1, h2, h3, h4, h5 {
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    letter-spacing: -1px;
+    border-bottom: 4px solid #3498db; /* Adds a creative underline to h1 */
+    padding-bottom: 10px;
+  }
+  
+  h2 {
+    font-size: 2em;
+    border-bottom: 3px solid #e74c3c; /* A bold underline for h2 */
+    padding-bottom: 8px;
+  }
+  
+  h3 {
+    font-size: 1.75em;
+    color: #34495e;
+  }
+  
+  h4 {
+    font-size: 1.5em;
+    color: #7f8c8d;
+  }
+  
+  h5 {
+    font-size: 1.25em;
+    color: #95a5a6;
+  }
+  
+  /* Styling for <code> tags */
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+    background-color: #f4f4f4;
+    padding: 0.3em 0.5em;
+    border-radius: 4px;
+    border: 1px solid #dcdcdc;
+    color: #e67e22; /* A vibrant orange to highlight code */
+  }
+  
+  /* Hover effect for code elements */
+  code:hover {
+    background-color: #f39c12;
+    color: #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Adding subtle effects for list items */
+  ol li:hover {
+    background-color: #ecf0f1;
+    border-left: 4px solid #3498db;
+    padding-left: 16px;
+    transition: all 0.3s ease;
+  }
+  

@@ -1,0 +1,48 @@
+# Start with an official Ubuntu base image
+FROM ubuntu:20.04
+
+# Set environment variables to avoid some interactive prompts during apt installs
+ENV DEBIAN_FRONTEND=noninteractive
+
+
+
+# Install dependencies for Ansible, SSH, and Python
+RUN apt-get update && \
+    apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    ssh \
+    git \
+    curl \
+    sudo \
+    vim \
+    net-tools \
+    iputils-ping \
+    && apt-get clean
+
+# Install Ansible using pip
+RUN pip3 install ansible
+
+# Install a web server (nginx in this case)
+RUN apt-get install -y nginx
+
+# Create a directory for your Ansible configuration and playbooks
+RUN mkdir /ansible
+#WORKDIR /ansible
+
+# Copy your Ansible configuration files and playbooks into the container
+# For example, copy a playbook or an inventory file into the container
+# Docker cp
+# Docker bind mount
+# COPY ansible.cfg /ansible/ansible.cfg
+# COPY hosts.ini /ansible/hosts.ini
+# COPY playbooks/ /ansible/playbooks/
+COPY ansible-ssh /ansible-ssh 
+COPY ansible-ssh.pub /ansible-ssh.pub 
+COPY hosts /hosts
+COPY Commands.txt /Commands.txt
+
+# Set the default command to run ansible-playbook when the container starts
+# Set the CMD to run nginx in the foreground
+CMD ["nginx", "-g", "daemon off;"]

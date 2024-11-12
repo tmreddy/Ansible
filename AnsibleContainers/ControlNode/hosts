@@ -1,0 +1,4 @@
+[webservers]
+172.18.0.3 ansible_ssh_private_key_file=ansible-ssh ansible_user=demouser
+172.18.0.4 ansible_ssh_private_key_file=ansible-ssh ansible_user=demouser
+172.18.0.5 ansible_ssh_private_key_file=ansible-ssh ansible_user=demouser
