@@ -19,13 +19,11 @@ RUN apt-get update && \
     vim \
     net-tools \
     iputils-ping \
+    iproute2 \
     && apt-get clean
 
 # Install Ansible using pip
 RUN pip3 install ansible
-
-# Install a web server (nginx in this case)
-RUN apt-get install -y nginx
 
 # Create a directory for your Ansible configuration and playbooks
 RUN mkdir /ansible
@@ -44,5 +42,4 @@ COPY hosts /hosts
 COPY Commands.txt /Commands.txt
 
 # Set the default command to run ansible-playbook when the container starts
-# Set the CMD to run nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["tail", "-f", "/dev/null"]

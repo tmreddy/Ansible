@@ -1,7 +1,6 @@
 # site.yml
 ---
 - hosts: all
-  become: true
-  become_user: demouser
+  become: yes
   roles:
-    - nginx
+  - nginx

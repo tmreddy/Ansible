@@ -1,7 +1,7 @@
 
 ---
 
-version: '3.8'
+# version: '3.8'
 
 services:
   control-node:
@@ -16,20 +16,14 @@ services:
     container_name: node1
     networks:
       - ansible-net
-    ports:
-      - "2220:22"
   node2:
     image: managednode
     container_name: node2
     networks:
       - ansible-net
-    ports:
-      - "2221:22"
   node3:
     image: managednode
     container_name: node3
-    ports:
-      - "2222:22"
     networks:
       - ansible-net
 

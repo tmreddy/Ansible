@@ -1,15 +1,13 @@
-# nginx/tasks/main.yml
+# roles/nginx/tasks/main.yml
 ---
-- name: Install Nginx package
+- name: Update apt cache
   apt:
-    name: "{{ nginx_package }}"
-    state: present
     update_cache: yes
-  notify:
-    - Nginx installation complete
+  become: yes
 
-- name: Start and enable Nginx service
-  service:
-    name: "{{ nginx_service }}"
-    state: started
-    enabled: yes
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+  become: yes
+  notify: Nginx installation complete
