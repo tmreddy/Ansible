@@ -1,0 +1,17 @@
+---
+
+- name: Install pacakge based on OS family
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install git if OS is RedHad
+      yum:
+        name: git
+        state: present
+      when: ansible_os_family == "RedHat"
+    - name: Install git if os is ubuntu
+      apt:  
+        name: git
+        state: present
+      when: ansible_os_family == "Debian"

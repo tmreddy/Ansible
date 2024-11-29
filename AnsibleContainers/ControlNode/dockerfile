@@ -4,8 +4,6 @@ FROM ubuntu:20.04
 # Set environment variables to avoid some interactive prompts during apt installs
 ENV DEBIAN_FRONTEND=noninteractive
 
-
-
 # Install dependencies for Ansible, SSH, and Python
 RUN apt-get update && \
     apt-get install -y \
@@ -26,7 +24,7 @@ RUN apt-get update && \
 RUN pip3 install ansible
 
 # Create a directory for your Ansible configuration and playbooks
-RUN mkdir /ansible
+RUN mkdir /etc/ansible 
 #WORKDIR /ansible
 
 # Copy your Ansible configuration files and playbooks into the container
@@ -37,9 +35,11 @@ RUN mkdir /ansible
 # COPY hosts.ini /ansible/hosts.ini
 # COPY playbooks/ /ansible/playbooks/
 COPY ansible-ssh /ansible-ssh 
-COPY ansible-ssh.pub /ansible-ssh.pub 
-COPY hosts /hosts
-COPY Commands.txt /Commands.txt
+COPY EC2.pem /EC2.pem
+# COPY ansible-ssh.pub /ansible-ssh.pub 
+# Copying hosts file to ansible default host location 
+COPY hosts /etc/ansible/hosts
+# COPY Commands.txt /Commands.txt
 
 # Set the default command to run ansible-playbook when the container starts
 CMD ["tail", "-f", "/dev/null"]

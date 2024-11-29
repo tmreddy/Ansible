@@ -1,4 +1,5 @@
 [webservers]
-172.18.0.3 ansible_ssh_private_key_file=ansible-ssh ansible_user=demouser
-172.18.0.4 ansible_ssh_private_key_file=ansible-ssh ansible_user=demouser
-172.18.0.5 ansible_ssh_private_key_file=ansible-ssh ansible_user=demouser
+172.18.0.3 ansible_ssh_private_key_file=ansible-ssh ansible_user=ansibleuser
+172.18.0.4 ansible_ssh_private_key_file=ansible-ssh ansible_user=ansibleuser
+172.18.0.5 ansible_ssh_private_key_file=ansible-ssh ansible_user=ansibleuser
+35.154.119.151 ansible_ssh_private_key_file=EC2.pem ansible_user=ec2-user 

@@ -1,0 +1,11 @@
+---
+
+- name: uninstall tree from all nodes
+  hosts: all
+  become: true
+
+  tasks:
+    - name: uninstall tree package  
+      apt:
+        name: tree
+        state: absent 

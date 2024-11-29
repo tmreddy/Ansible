@@ -1,0 +1,7 @@
+---
+
+- name: apache2-role
+  apt:
+    name: apache2
+    state: absent 
+  tags: apache2

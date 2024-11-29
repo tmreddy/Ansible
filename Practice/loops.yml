@@ -1,0 +1,17 @@
+---
+
+- name: understaing loops with viariables
+  hosts: all
+  # become: true
+
+  vars:
+    fruits:
+      - orange
+      - mangao
+      - banana
+
+  tasks:
+    - name: My faviorite fruits
+      debug:
+        msg: "{{ item }}"
+      with_items: "{{ fruits }}"

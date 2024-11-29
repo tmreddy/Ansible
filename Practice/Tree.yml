@@ -1,0 +1,17 @@
+---
+
+- name: Install tree package on all node
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install tree package  
+      apt:
+        name: tree
+        state: present
+
+  # ansible all -m apt -a "name=tree state=present" --become to install tree
+  # ansible  all -m apt -a "name=tree state=absent" --become to remove tree 
+  # docker exec -it -u ansibleuser node1 bash
+  # sudo apt remove tree 
+  # sudo apt install tree 

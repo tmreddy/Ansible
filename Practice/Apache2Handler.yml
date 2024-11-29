@@ -1,0 +1,19 @@
+---
+
+- name: Update website content on all nodes
+  hosts: all
+  become: true
+
+  tasks: 
+    - name: Copy latest website files
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+      notify: Restart apache2 service
+  
+  handlers:
+    - name: Restart apache2 service
+      service:
+        name: apache2
+        state: started
+        enabled: yes

@@ -1,0 +1,7 @@
+---
+
+- name: git-role
+  apt:
+    name: git
+    state: absent
+  tags: git

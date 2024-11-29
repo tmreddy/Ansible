@@ -1,0 +1,27 @@
+---
+
+- name: Tags example
+  hosts: all
+  become: true
+  tasks:
+    - name: install tree 
+      apt:
+        name: tree
+        state: present
+      tags: tree
+    - name: install git 
+      apt:
+        name: git
+        state: present
+      tags: git
+    - name: install apache2
+      apt:
+        name: apache2
+        state: present 
+      tags: apache2
+
+      # sudo service apache2 start 
+      # service apache2 status
+      # sudo service apache2 stop
+      # sudo service apache2 restart
+      # sudo service apache2 reload

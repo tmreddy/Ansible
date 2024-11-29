@@ -8,7 +8,7 @@ services:
     image: ansible 
     container_name: control-node
     volumes:
-      - /Users/mreddy/Developer/Mallikarjun/GitRepository/Ansible/:/home
+      - /Users/mreddy/Developer/Mallikarjun/GitRepository/Ansible/:/workingdir
     networks:
       - ansible-net
   node1:

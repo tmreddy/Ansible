@@ -1,0 +1,7 @@
+---
+
+- name: tree-role 
+  apt:
+    name: tree
+    state: absent
+  tags: tree

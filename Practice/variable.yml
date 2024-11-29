@@ -1,0 +1,14 @@
+---
+
+- name: Installing docker via variables
+  hosts: all
+  become: true
+
+  vars:
+    package_name: docker.io
+
+  tasks:
+    - name: install docker
+      apt:
+        name: "{{ package_name }}"
+        state: present

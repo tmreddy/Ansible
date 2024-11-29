@@ -1,0 +1,20 @@
+---
+
+- name: Create user on all nodes
+  hosts: all 
+  become: true
+
+  tasks:
+    - name: Create user
+      user:
+        name: mreddy
+        state: present
+    - name: Add to wheel Group
+      user: 
+        name: mreddy
+        groups: sudo
+        append: yes
+
+# getent group - command to get groups on ubuntu machine
+# groups - command
+# getent group sudo - command to get the list of users belongs to sudo group

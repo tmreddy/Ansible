@@ -1,7 +1,7 @@
 # commands to copy public key 
-ssh-copy-id -i  ansible-ssh.pub demouser@172.18.0.4
-ssh-copy-id -i  ansible-ssh.pub demouser@172.18.0.3
-ssh-copy-id -i  ansible-ssh.pub demouser@172.18.0.5
+ssh-copy-id -i  ansible-ssh.pub ansibleuser@172.18.0.4
+ssh-copy-id -i  ansible-ssh.pub ansibleuser@172.18.0.3
+ssh-copy-id -i  ansible-ssh.pub ansibleuser@172.18.0.5
 # ansible command to ping nodes 
 ansible -i hosts webservers -m ping
 

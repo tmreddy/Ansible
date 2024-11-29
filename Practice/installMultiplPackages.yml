@@ -1,0 +1,20 @@
+---
+
+- name: Uninstall multiple packages via variable and loops
+  hosts: all
+  become: true
+
+  vars:
+    package_names:
+      - tree
+      - vim
+      - apache2
+      - docker.io
+      - git 
+  
+  tasks:
+    - name: install multiple packages
+      apt:
+        name: "{{ item }}"
+        state: present 
+      loop: "{{ package_names }}"

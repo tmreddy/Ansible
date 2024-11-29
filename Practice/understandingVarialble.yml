@@ -1,0 +1,11 @@
+---
+
+- name: understanding variables
+  hosts: all
+  become: true
+
+  tasks: 
+    - name: Install any package
+      apt:
+        name: "{{ package_name }}"
+        state: present
