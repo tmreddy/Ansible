@@ -1,0 +1,110 @@
+---
+
+- name: Variable examples
+  hosts: all
+  vars:
+    string: "Mallikarjun"
+    boolean: false  
+    is_enabled: true
+    list: 
+      - NagaLakshmi
+      - Dinesh
+      - Gagana
+    dictionary:
+      name: Mallikarjun
+      age: 45
+      city: Bangalore
+    fruits:
+      orange: 10
+      apple: 20
+      banana: 30
+    market:
+      - name: NagaLakshmi
+        fruits:
+          - orange
+          - apple
+      - name: Mallikarjun
+        fruits:
+          - banana
+          - orange
+  vars_files: 
+      - vars.yml 
+  tasks:
+    - name: Print string variable
+      debug:
+        msg: "String variable is {{ string }}"
+
+    - name: Print boolean variable
+      debug:
+        msg: "Boolean variable is {{ boolean }}"
+
+    - name: Print boolean variable with when condition
+      debug:
+        msg: "Boolean variable is {{ is_enabled }} is true"
+      when: is_enabled
+
+    - name: Print list variable
+      debug:
+        msg: "List variable is {{ list }}"
+
+    - name: Print list variable
+      debug:
+        msg: "List variable is {{ list[0] }}"
+
+    - name: Print dictionary variable
+      debug:
+        msg: "Dictionary variable is {{ dictionary }}"
+
+    - name: Print dictionary variable
+      debug:
+        msg: "Dictionary variable is {{ dictionary.city }}"
+      
+    - name: Print registered variable
+      command:  echo " {{ dictionary.city }} "
+      register: city_registred_variable
+    
+    - name: Print registered variable
+      debug:
+        var: city_registred_variable.stdout
+
+    - name: Print market variable
+      debug:
+        msg: "Market variable is {{ market[1].fruits[1] }}"
+
+    - name: Print market variable
+      debug:
+        msg: "Market variable is {{ fruits[market[1].fruits[1]] }}"
+
+    - name: Print variable from another file
+      debug:
+        msg: "Variable from another file is {{ name }}"
+
+    - name: Print variable from another file
+      debug:
+        msg: "Variable from another file is {{ sopuse }}"
+
+    - name: Print variable from another file
+      debug:
+        msg: "Variable from another file is {{ children }}"
+
+    - name: Print variable from another file
+      debug:
+        msg: "Variable from another file is {{ children[1].name }}"
+
+    - name: Print variable from another file
+      debug:
+        msg: "Variable from another file is {{ children[1].age }}"
+
+    - name: Print variable from another file
+      debug:
+        msg: "Variable from another file is {{ children[1].gender }}"
+    
+    - name: Print variable from another file
+      debug:
+        msg: "Variable from another file is {{ children | map(attribute='name') | list }}"
+
+    - name: Print task level variable 
+      vars:
+        task_var: "This is task level variable" 
+      debug:
+        msg: "Task level variable is {{ task_var }}"

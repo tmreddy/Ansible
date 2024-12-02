@@ -1,0 +1,5 @@
+---
+
+- name: testing from import 
+  debug:
+    msg: "This message is from role.yml"

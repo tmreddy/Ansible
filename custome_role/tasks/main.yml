@@ -1,0 +1,8 @@
+---
+# tasks file for custome_role
+- import_tasks: import.yml
+- import_tasks: role.yml
+
+- name: testing
+  debug:
+    msg: "This message is from custome_role.yml"

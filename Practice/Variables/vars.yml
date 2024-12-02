@@ -1,0 +1,11 @@
+---
+
+name: Mallikarjun
+sopuse: NagaLakshmi
+children:
+  - name: Dinesh
+    age: 9
+    gender: male
+  - name: Gagana
+    age: 6
+    gender: female

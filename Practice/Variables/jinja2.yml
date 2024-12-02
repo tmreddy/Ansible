@@ -1,0 +1,20 @@
+---
+
+- name: Jinja 2 examples
+  hosts: all
+  vars:
+    fruits:
+      orange: 10
+      apple: 20
+      banana: 30
+
+  tasks:
+    - name: Using Jinja 2 filters on variables
+      debug:
+        var: fruits.keys() | list | map('upper') | list
+    - name: Providing Variable value at runtime
+      debug:
+        var: version 
+    - name: Providing Variable file at runtime
+      debug:
+        var: another_var

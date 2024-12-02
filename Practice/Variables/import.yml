@@ -1,0 +1,12 @@
+---
+# - import_tasks: jinja2.yml
+# - import_tasks: whenCondition.yml
+
+- name: testing import_tasks
+  hosts: all
+  become: true
+
+  tasks: 
+    - name: Importing a task file
+      debug:
+        msg: "testing"

@@ -1,0 +1,12 @@
+---
+# tasks file for install_apache2
+- name: Install apache2 package
+  apt:
+    name: apache2
+    state: present
+- name: Start apache2 service
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+  ignore_errors: true

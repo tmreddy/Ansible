@@ -1,0 +1,27 @@
+---
+
+- name: Environment Variables 
+  hosts: all
+  become: true
+
+  environment: 
+    EXAMPLE: "This is an example of environment variable"
+  
+  tasks:
+    - name: Environement varaible at playbook level
+      ansible.builtin.command: "echo $EXAMPLE" 
+    
+    - name: Environment variable at task level. 
+      environment:
+        EXAMPLE1 : "Taks environemnt value"
+      ansible.builtin.command: "echo $EXAMPLE1"
+    
+    - name: Environement varaible at playbook, task level
+      ansible.builtin.command: "echo $EXAMPLE $EXAMPLE1" 
+    
+    - name: Environement varaible at playbook level
+      command: "echo $EXAMPLE $EXAMPLE1"  
+    
+    - name: Environement varaible at playbook level
+      command: "echo {{ EXAMPLE }}  {{ EXAMPLE1 }}"  
+    

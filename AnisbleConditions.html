@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansible Conditions</title>
+    <link rel="stylesheet" href="modules.css">
+    <script src="module.js"></script>
+</head>
+<body>
+    <h1>Ansible conditions</h1>
+    <ol>
+        <li>In Ansible conditions are defined with when keyword.</li>
+        <li>In Ansible we can give multiple conditions as list <br> <br>
+            <code>
+                when: <br>
+                &nbsp;&nbsp;- ansible_os_family == "RedHat" <br>
+                &nbsp;&nbsp;- ansible_distribution_version == "7" <br>
+            </code>
+        </li>
+        <li>In Ansible we can give multiple conditions with and keyword <br><br>
+            <code>
+                when: <br>
+                &nbsp;&nbsp;- ansible_os_family == "RedHat" and ansible_distribution_version == "7" <br>
+            </code>
+        </li>
+        <li>In Anisble we can give condition with loop <br><br>
+            <code>
+                when: <br>
+                &nbsp;&nbsp;- item == "apple" <br>
+                &nbsp;&nbsp;loop: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- apple <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- orange <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- banana <br>
+            </code>
+        </li>
+        <li>Ansible facts are the facts about the managed nodes<br><br>
+            <code>
+                <!-- write only ansbile facts examples  -->
+                when: ansible_os_family == "RedHat" <br>
+                <!-- write ansible facts -->
+                ansible_
+            </code>
+        </li>
+    </ol>
+</body>
+</html>

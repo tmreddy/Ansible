@@ -1,0 +1,9 @@
+---
+
+- name: testing roles
+  hosts: all
+  become: true  
+
+  roles:
+    - custome_role
+    - install_apache2

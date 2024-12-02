@@ -1,0 +1,44 @@
+---
+
+- name: When conditions
+  hosts: all
+  become: true
+  vars:
+    install_apache_flag: true
+  
+  tasks:
+    - name: Install Apache web server
+      apt:
+        name: apache2
+        state: absent
+      when: install_apache_flag
+
+    - name: Combining conditions using ansible facts 
+      debug:
+        var : ansible_facts["os_family"]
+
+    - name: Combining conditions using ansible facts 
+      debug:
+        var : ansible_facts["distribution_major_version"]  
+      
+    - name: Combining conditions using ansible facts 
+      debug:
+        var: ansible_facts["kernel_version"]
+      when: 
+        - ansible_facts["os_family"] == "Debian"
+        - ansible_facts["distribution_major_version"] == "20"
+  
+    - name: Setting complex condition
+      debug:
+        var: ansible_facts["kernel_version"]
+      when:
+        ansible_facts["os_family"] == "Debian" and ansible_facts["distribution_major_version"] | int >= 20
+    
+    - name: Register a variable
+      ansible.builtin.command: cat test.txt
+      register: cat_output
+    
+    - name: Use the varaible in when condition
+      debug:
+        var: cat_output.stdout
+      when: cat_output.stdout.find("hi") != -1

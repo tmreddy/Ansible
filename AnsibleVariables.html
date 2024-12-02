@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ansible Variables</title>
+    <link rel="stylesheet" href="modules.css">
+    <script src="module.js"></script>
+</head>
+<body>
+    <h1>Ansible Variables</h1>
+    <ol>
+        <li> Variable declaration <br><br>
+            <code>
+                vars: <br>
+                &nbsp;&nbsp;package_name: docker.io <br>
+                &nbsp;&nbsp;is_useful: true <br>
+                &nbsp;&nbsp;age: 45 <br>
+                &nbsp;&nbsp;fruits: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- apple <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- orange <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- banana <br>
+                &nbsp;&nbsp;members: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;lakshmi: wife <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;dinesh: son <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;gagana: daughter <br>
+            </code>
+            <button class="copy-btn"></button>
+        </li>
+        <li> Accessing varaibles <br><br>
+            <code>
+                {{ package_name }} <br>
+                {{ members }} <br>
+                {{ members.lakshmi }} <br>
+                {{ fruits }} <br>
+                {{ fruits[1] }}
+            </code>
+            <button class="copy-btn"></button>
+        </li>
+        <li> Variable file reference in main playbook <br><br>
+            <code>
+                vars_files: <br>
+                &nbsp;&nbsp;- filename.yml
+            </code>
+            <button class="copy-btn"></button>
+        </li>
+        <li> In Variable file there should not be vars: section<br><br>
+            <code>
+                name: Mallikarjun <br>
+                spouse: Lakshmi
+            </code>
+            <button class="copy-btn"></button>
+        </li> 
+        <li> Providing variable value at run time<br><br>
+            <code>
+                ansible-playbook jinja2.yml --extra-vars '{"version":"1.0.0"}'
+            </code>
+            <button class="copy-btn"></button>
+        </li>
+        <li> Providing variable file at run time<br><br>
+            <code>
+                ansible-playbook jinja2.yml --extra-vars '@myvars.yml'
+            </code>
+            <button class="copy-btn"></button>
+        </li>
+        <li>Precedence variable given at run time will get the heighest precedence.</li>
+        <li>
+            <code>
+                ansible-playbook workingdir/Practice/Variables/jinja2.yml --extra-vars '{"version":"1.0.0","another_var":"runtime value"}'
+            </code>
+        </li>
+        <li>
+            Environment varaible like $HOME, $USER, $PATH. 
+        </li>
+        <li>Environment varaible declartion <br> <br>
+        <code>
+            environment: <br>
+            &nbsp;&nbsp;HOME: /home/mreddy <br>
+            &nbsp;&nbsp;USER: mreddy <br>
+            &nbsp;&nbsp;PATH: /usr/local/bin:/usr/bin:/bin
+        </code>
+        </li>
+        <li>Environment varaible can be declared at playbook level or at task level. Environment variable declared at playbook level can be accessed by all tasks. Task level environemnt variables are limited to the task. </li>
+        <li>Environment varaibles are accessed with $VARNAME</li>
+        <li>Variables are accesed with {{ varname }}</li>
+        <li>Normal variables can also be declared at playbook level or at task level </li>
+
+    </ol>
+</body>
+</html>
