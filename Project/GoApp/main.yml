@@ -1,0 +1,9 @@
+---
+
+- name: install go and deploy go app 
+  hosts: go-app
+  become: true
+
+  roles:
+    - go-role
+  

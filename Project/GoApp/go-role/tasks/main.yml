@@ -1,0 +1,64 @@
+---
+# tasks file for go-role
+
+# - name: install go language
+#   apt:
+#     name: golang-go
+#     state: present
+#     update_cache: yes
+#     cache_valid_time: 3600
+
+- name: Remove previous go installation 
+  command:  rm -rf /usr/local/go 
+  
+- name: Install go
+  apt:  
+    name: golang-go
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+# - name: Download go1.23.3.linux-amd64.tar.gz
+#   get_url:
+#     url: https://golang.org/dl/go1.23.3.linux-amd64.tar.gz
+#     dest: go1.23.3.linux-amd64.tar.gz  
+
+# - name: Extract go1.23.3.linux-amd64.tar.gz
+#   command: tar -C /usr/local -xzf /tmp/go1.23.3.linux-amd64.tar.gz
+
+# - name: Set GOROOT environment variable
+#   command: export GOROOT=/usr/local/go
+
+# - name: Set GOPATH environment variable
+#   command: export GOPATH=/home/ubuntu/go
+
+# - name: Set PATH environment variable
+#   command: export PATH=$PATH:/usr/local/go/bin
+
+- name: Check go version 
+  command: go version
+  register: version 
+  ignore_errors: true
+
+- name: Print go version
+  debug:
+    var: version.stdout
+
+- name: Copy go-api
+  copy:
+    src: ../go-api
+    dest: /home/ansibleuser
+
+- name: build go-api  
+  command: /usr/local/go/bin/go build -o go-api
+  args:
+    chdir: /home/ansibleuser/go-api
+
+- name: Test go-api http://localhost:8000/users
+  uri:
+    url: http://localhost:8000/users
+    status_code: 200
+  register: result
+  until: result.status == 200
+  # retries: 10
+  # delay: 5

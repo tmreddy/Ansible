@@ -1,0 +1,8 @@
+---
+# vars file for go-role1
+# roles/go_app/vars/main.yml
+go_version: "1.23.3"        # Go version to install
+go_url: "https://golang.org/dl/go{{ go_version }}.linux-amd64.tar.gz"  # Go download URL
+app_repo: "https://github.com/your_username/go-app.git"  # GitHub repo for Go app
+app_dir: "/opt/go-app"    # Directory where the Go app will be deployed
+app_port: 8080            # Port on which the Go app will run

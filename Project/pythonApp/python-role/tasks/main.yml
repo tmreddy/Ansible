@@ -1,0 +1,24 @@
+---
+# tasks file for python-role
+- name: install and upgrade
+  apt: 
+    name: python3
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: install pip
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: check python version
+  command: python3 --version
+  register: python_version
+  ignore_errors: true
+
+- name: print python version
+  debug:
+    var: python_version.stdout

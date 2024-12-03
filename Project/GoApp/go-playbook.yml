@@ -1,0 +1,11 @@
+---
+
+- name: install go and deploy go app 
+  hosts: go-app
+  become: true
+  
+  vars_files:
+    - go-role1/vars/main.yml
+
+  roles:
+    - go-role1

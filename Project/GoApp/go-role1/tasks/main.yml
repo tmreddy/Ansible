@@ -1,0 +1,48 @@
+---
+- name: Download Go binary
+  get_url:
+    url: "{{ go_url }}"
+    dest: "/tmp/go{{ go_version }}.tar.gz"
+
+- name: Extract Go archive
+  unarchive:
+    src: "/tmp/go{{ go_version }}.tar.gz"
+    dest: "/usr/local"
+    remote_src: yes
+
+- name: Set Go environment variables
+  lineinfile:
+    path: /etc/profile
+    regexp: '^{{ item }}'
+    line: "{{ item }}"
+    create: yes
+  with_items:
+    - 'export PATH=$PATH:/usr/local/go/bin'
+    - 'export GOPATH=$HOME/go'
+    - 'export GOROOT=/usr/local/go'
+
+- name: Reload profile to apply Go variables
+  shell: source /etc/profile
+  when: ansible_os_family == "Debian"
+
+
+- name: Copy go-api
+  copy:
+    src: ../go-api
+    dest: "{{ app_dir }}"
+
+- name: Build Go app
+  command:
+    cmd: "/usr/local/go/bin/go build -o {{ app_dir }}/app {{ app_dir }}/main.go"
+    creates: "{{ app_dir }}/app"
+
+- name: Ensure Go app is running
+  shell: "curl -s http://localhost:{{ app_port }} | grep 'Go App is Running'"
+  register: curl_output
+  retries: 5
+  delay: 10
+  until: curl_output.stdout != ""
+
+- name: Show the result of Go app test
+  debug:
+    msg: "Go app is running successfully on port {{ app_port }}."
